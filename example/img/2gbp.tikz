@@ -1,0 +1,55 @@
+% define colors
+\def\rangeHsb{15}
+\foreach \n in {0,...,14}
+{\xglobal\definecolor{hue\n}{rgb:Hsb}{\n,1,1}%
+\xglobal\colorlet{myColor\n}{hue\n!20!bgColor}}
+\colorlet{lineColor}{textColor!75!bgColor}
+%
+\newlength{\myunit}
+\setlength{\myunit}{0.325cm}
+\begin{tikzpicture}[scale=0.7,
+bin/.style={draw=lineColor,thick},
+item/.style={draw=lineColor},
+myarrow/.style={draw=lineColor,->,>={Stealth},thick},
+]
+\begin{scope}[yshift=2.1cm]
+\path[item,fill=myColor0] (1\myunit, 19\myunit) rectangle +(7\myunit, 7\myunit);
+\path[item,fill=myColor1] (7\myunit, 0\myunit) rectangle +(9\myunit, 6\myunit);
+\path[item,fill=myColor2] (0\myunit, 1\myunit) rectangle +(6\myunit, 9\myunit);
+\path[item,fill=myColor3] (7\myunit, 7\myunit) rectangle +(8\myunit, 3\myunit);
+\path[item,fill=myColor4] (9\myunit, 19\myunit) rectangle +(4\myunit, 7\myunit);
+\path[item,fill=myColor5] (13\myunit, 11\myunit) rectangle +(3\myunit, 7\myunit);
+\path[item,fill=myColor6] (0\myunit, 11\myunit) rectangle +(12\myunit, 2\myunit);
+\path[item,fill=myColor7] (2\myunit, 16\myunit) rectangle +(9\myunit, 2\myunit);
+\path[item,fill=myColor8] (17\myunit, 1\myunit) rectangle +(2\myunit, 9\myunit);
+\path[item,fill=myColor9] (17\myunit, 11\myunit) rectangle +(2\myunit, 7\myunit);
+\path[item,fill=myColor10] (14\myunit, 23\myunit) rectangle +(4\myunit, 4\myunit);
+\path[item,fill=myColor11] (14\myunit, 19\myunit) rectangle +(5\myunit, 3\myunit);
+\path[item,fill=myColor12] (0\myunit, 14\myunit) rectangle +(12\myunit, 1\myunit);
+\end{scope}
+\draw[myarrow] (19\myunit+0.5cm,6.45cm) -- (10cm-0.5cm,6.45cm);
+\begin{scope}[xshift=10cm]
+\begin{scope}[yshift=9cm]
+\path[item,fill=myColor2] (0\myunit, 3\myunit) rectangle +(6\myunit, 9\myunit);
+\path[item,fill=myColor5] (8\myunit, 3\myunit) rectangle +(3\myunit, 7\myunit);
+\path[item,fill=myColor6] (0\myunit, 0\myunit) rectangle +(12\myunit, 2\myunit);
+\path[item,fill=myColor8] (6\myunit, 3\myunit) rectangle +(2\myunit, 9\myunit);
+\path[item,fill=myColor12] (0\myunit, 2\myunit) rectangle +(12\myunit, 1\myunit);
+\path[bin] (0\myunit, 0\myunit) rectangle (12\myunit, 12\myunit);
+\end{scope}
+\begin{scope}[yshift=4.5cm]
+\path[item,fill=myColor1] (0\myunit, 0\myunit) rectangle +(9\myunit, 6\myunit);
+\path[item,fill=myColor3] (0\myunit, 8\myunit) rectangle +(8\myunit, 3\myunit);
+\path[item,fill=myColor7] (0\myunit, 6\myunit) rectangle +(9\myunit, 2\myunit);
+\path[item,fill=myColor9] (9\myunit, 0\myunit) rectangle +(2\myunit, 7\myunit);
+\path[bin] (0\myunit, 0\myunit) rectangle (12\myunit, 12\myunit);
+\end{scope}
+\begin{scope}
+\path[item,fill=myColor0] (0\myunit, 0\myunit) rectangle +(7\myunit, 7\myunit);
+\path[item,fill=myColor4] (7\myunit, 0\myunit) rectangle +(4\myunit, 7\myunit);
+\path[item,fill=myColor10] (0\myunit, 7\myunit) rectangle +(4\myunit, 4\myunit);
+\path[item,fill=myColor11] (4\myunit, 7\myunit) rectangle +(5\myunit, 3\myunit);
+\path[bin] (0\myunit, 0\myunit) rectangle (12\myunit, 12\myunit);
+\end{scope}
+\end{scope}
+\end{tikzpicture}

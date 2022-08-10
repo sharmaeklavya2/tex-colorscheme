@@ -1,0 +1,104 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage[hypertexnames=false,bookmarksnumbered=true,final]{hyperref}
+\usepackage[capitalize,sort]{cleveref}
+\usetikzlibrary{decorations.pathreplacing,arrows.meta,calc,3d,perspective}
+
+\input{../colorscheme.tex}
+\hypersetup{colorlinks,linkcolor=textRed,citecolor=textRed,urlcolor=textBlue}
+
+\DeclareMathOperator{\opt}{opt}
+\let\eps\varepsilon
+
+\title{Bin Packing}
+\author{\empty}
+\date{\empty}
+
+\begin{document}
+
+\maketitle
+\setlength{\parskip}{0.5em}
+
+\section{Introduction}
+
+In the classical bin packing problem, we are given a set $I$ of items.
+Each item $i \in I$ has a size $s(i) \in (0, 1]$ associated with it.
+Our goal is to partition $I$ into the minimum number of bins,
+such that the sum of sizes of items in each bin is at most 1.
+See \cref{fig:1bp} for an example.
+The classical bin packing problem and its generalizations
+have diverse applications in computer science and operations research,
+like packing goods into trucks, allocating jobs to servers,
+allocating memory in computers~\cite{handbook-of-combinopt-bp},
+or assigning advertisements to station breaks in television programming.
+
+\begin{figure}[!ht]
+\centering
+\begin{subfigure}{0.9\textwidth}
+    \centering
+    \input{img/1bp-a.tikz}
+    \caption{A set of six items: two items have size 0.4 and four items have size 0.3.}%
+\label{fig:1bp:a}
+\end{subfigure}
+\par\bigskip\bigskip
+\begin{subfigure}{0.45\textwidth}
+    \centering
+    \input{img/1bp-b.tikz}
+    \caption{A packing of the items into 3 bins.}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+    \centering
+    \input{img/1bp-c.tikz}
+    \caption{A packing of the items into 2 bins.}
+\end{subfigure}
+\caption[An example of classical bin packing.]{An example of classical bin packing.
+We want to minimize the number of bins, so the packing into 2 bins
+is better than the packing into 3 bins.}
+\label{fig:1bp}
+\end{figure}
+
+First-Fit Decreasing (FFD) is a popular algorithm for classical bin packing.
+Johnson~\cite{johnson-thesis} showed that the number of bins used by
+FFD is at most $(11/9)\opt(I) + 4$,
+where $\opt(I)$ is the minimum number of bins needed to pack $I$.
+Lueker and Vega~\cite{bp-aptas} gave an algorithm that accepts a parameter $\eps > 0$
+and packs the items into $(1+\eps)\opt(I) + O(1/\eps^2)$ bins in $O(n\log n + 1/\eps^2)$ time.
+
+In the 2-dimensional geometric bin packing problem (abbreviated as 2D GBP),
+we are given a set $I$ of $n$ rectangular items and an infinite supply
+of identical rectangular bins.
+Our task is to pack the rectangles into the minimum number of bins such that
+in each bin, the items don't overlap.
+See \cref{fig:2gbp} for an example.
+
+\begin{figure}[htb]
+\centering
+\input{img/2gbp.tikz}
+\caption{Packing 13 rectangles into 3 bins (without rotation).}
+\label{fig:2gbp}
+\end{figure}
+
+There are two commonly-studied versions of 2D GBP.
+In the non-rotational version, rotating the items is forbidden.
+In the rotational version, the items can be rotated by $90^{\circ}$.
+In both versions, the items and bins are oriented parallel to the coordinate axes.
+
+2D GBP finds applications in the wood-cutting, metal-cutting, paper and cloth industries,
+where rectangular pieces need to be cut out of standard-sized sheets,
+and item rotations are usually allowed.
+Non-rotational 2D GBP can be used for placing advertisements on web pages and newspapers.
+
+For 2D GBP (both rotational and non-rotational versions),
+Bansal and Khan's algorithm~\cite{bansal2014binpacking}
+packs the items into $(\alpha+\eps)\opt(I)+O(1)$ bins, where
+$\alpha = 1 + \ln(1.5) \approx 1.4055$.
+
+\bibliographystyle{plainurl}
+\bibliography{bibdb}
+
+\end{document}
