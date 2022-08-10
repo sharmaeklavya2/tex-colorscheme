@@ -46,3 +46,10 @@ There are two ways I recommend:
 
 * Use the pre-defined text colors for coloring text: `textRed`, `textBlue`, `textGreen`.
 * Mix fully-saturated colors with `bgColor`.
+
+## Freedom to Use
+
+&copy; 2022 Eklavya Sharma
+
+All code is licensed under the [MIT license](https://choosealicense.com/licenses/mit/).
+This roughly means that you are free to use, modify, and distribute this code.
