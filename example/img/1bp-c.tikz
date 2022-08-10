@@ -1,4 +1,5 @@
 \begin{tikzpicture}[
+scale=0.8,
 item/.style={fill={textColor!10!bgColor},draw},
 bin/.style={draw,thick},
 ]
