@@ -33,6 +33,10 @@ to get a dark color scheme.
 
 This repository includes an example LaTeX document that you can build yourself:
 switch to the `example` directory and run `make dark` or `make light` or `make sepia`.
+This is what the PDF outputs look like:
+[light](https://sharmaeklavya2.github.io/tex-colorscheme/example/example-light.pdf),
+[dark](https://sharmaeklavya2.github.io/tex-colorscheme/example/example-dark.pdf),
+[sepia](https://sharmaeklavya2.github.io/tex-colorscheme/example/example-sepia.pdf).
 
 ## Tips and Best Practices
 
