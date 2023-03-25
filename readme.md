@@ -49,7 +49,7 @@ If you use colors in your document, you'll want to use different colors dependin
 There are two ways I recommend:
 
 * Use the pre-defined text colors for coloring text: `textRed`, `textBlue`, `textGreen`.
-* Mix fully-saturated colors with `bgColor`.
+* Mix fully-saturated colors with `bgColor`, e.g., `{red!10!bgColor}` is 10% red.
 
 ## Freedom to Use
 
