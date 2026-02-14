@@ -7,7 +7,7 @@
 %
 \newlength{\myunit}
 \setlength{\myunit}{0.325cm}
-\begin{tikzpicture}[scale=0.7,
+\begin{tikzpicture}[scale=0.6,
 bin/.style={draw=lineColor,thick},
 item/.style={draw=lineColor},
 myarrow/.style={draw=lineColor,->,>={Stealth},thick},

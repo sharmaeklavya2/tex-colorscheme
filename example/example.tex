@@ -1,18 +1,21 @@
-\documentclass[a4paper,12pt,fleqn]{article}
+\documentclass[a4paper,11pt,fleqn]{article}
 
-\usepackage{amsmath}
+\usepackage{amsmath,amsthm}
 \usepackage[margin=1in]{geometry}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{subcaption}
 \usepackage[hypertexnames=false,bookmarksnumbered=true,final]{hyperref}
 \usepackage[capitalize,sort]{cleveref}
+\usepackage{tcolorbox}
 \usetikzlibrary{decorations.pathreplacing,arrows.meta,calc,3d,perspective}
 
 \input{../colorscheme.tex}
 \hypersetup{colorlinks,linkcolor=textRed,citecolor=textRed,urlcolor=textBlue}
 
+\newtheorem{theorem}{Theorem}
 \DeclareMathOperator{\opt}{opt}
+\newcommand*{\Th}{^{\text{th}}}
 \let\eps\varepsilon
 
 \title{Bin Packing}
@@ -22,7 +25,7 @@
 \begin{document}
 
 \maketitle
-\setlength{\parskip}{0.5em}
+\setlength{\parskip}{0.35em}
 
 \section{Introduction}
 
@@ -62,12 +65,35 @@ is better than the packing into 3 bins.}
 \label{fig:1bp}
 \end{figure}
 
-First-Fit Decreasing (FFD) is a popular algorithm for classical bin packing.
-Johnson~\cite{johnson-thesis} showed that the number of bins used by
-FFD is at most $(11/9)\opt(I) + 4$,
+First-Fit Decreasing (FFD) is a popular algorithm for classical bin packing
+that can pack items $I$ into at most $(11/9)\opt(I) + 4$ bins in $O(|I|\log|I|)$ time,
 where $\opt(I)$ is the minimum number of bins needed to pack $I$.
-Lueker and Vega~\cite{bp-aptas} gave an algorithm that accepts a parameter $\eps > 0$
-and packs the items into $(1+\eps)\opt(I) + O(1/\eps^2)$ bins in $O(n\log n + 1/\eps^2)$ time.
+Lueker and Vega~\cite{bp-aptas}'s algorithm accepts a parameter $\eps > 0$
+and packs the items into $(1+\eps)\opt(I) + O(1/\eps^2)$ bins in $O(|I\log |I| + 1/\eps^2)$ time.
+
+Let's now see a simple result on 1D bin packing.
+
+\begin{tcolorbox}[colback=textColor!3!bgColor, colframe=textColor!40!bgColor, colupper=textColor]
+%\begin{tcolorbox}[colback=textColor!3!bgColor, frame empty, colupper=textColor]
+\begin{theorem}
+In the classical bin packing problem, for any set $I$ of items, we have
+\[ \sum_{i \in I} s(i) \le \opt(I) < \left\lceil 2\sum_{i \in I} s(i) \right\rceil. \]
+\end{theorem}
+\end{tcolorbox}
+\begin{proof}
+For any set $X \subseteq I$ of items, let $s(X) := \sum_{i \in X} s(i)$
+be the total size of the items in $X$.
+In an optimal packing, let $B_j$ be the items in the $j\Th$ bin. Then
+\[ s(I) = \sum_{j=1}^{\opt(I)} s(B_j) \le \sum_{j=1}^{\opt(I)} 1 = \opt(I). \]
+
+The first-fit algorithm packs each item into the first bin that it can fit in.
+Suppose the algorithm requires $m$ bins, and let $C_j$ be the items in the $j\Th$ bin.
+There cannot be two bins $j < k$ for which $s(C_j) \le 1/2$ and $s(C_k) \le 1/2$,
+otherwise the items $C_k$ could have fit into $C_j$.
+Thus, at least $m-1$ bins are more than half full. Hence,
+\[ s(I) = \sum_{j=1}^m s(C_j) > (m-1)\frac{1}{2}. \]
+Thus, $\opt(I) \le m < 2s(I) + 1$, so $\opt(I) \le \lceil 2s(I) \rceil$.
+\end{proof}
 
 In the 2-dimensional geometric bin packing problem (abbreviated as 2D GBP),
 we are given a set $I$ of $n$ rectangular items and an infinite supply
@@ -87,7 +113,7 @@ There are two commonly-studied versions of 2D GBP.
 In the non-rotational version, rotating the items is forbidden.
 In the rotational version, the items can be rotated by $90^{\circ}$.
 In both versions, the items and bins are oriented parallel to the coordinate axes.
-
+%
 2D GBP finds applications in the wood-cutting, metal-cutting, paper and cloth industries,
 where rectangular pieces need to be cut out of standard-sized sheets,
 and item rotations are usually allowed.
@@ -98,6 +124,7 @@ Bansal and Khan's algorithm~\cite{bansal2014binpacking}
 packs the items into $(\alpha+\eps)\opt(I)+O(1)$ bins, where
 $\alpha = 1 + \ln(1.5) \approx 1.4055$.
 
+\small
 \bibliographystyle{plainurl}
 \bibliography{bibdb}
 
